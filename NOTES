@@ -1,0 +1,22 @@
+03 Sep 2018 07:31:
+$ python manage.py shell
+from blog.models import Post
+Post.objects.all()
+from django.contrib.auth.models import User
+User.objects.all()
+me = User.objects.get(username='dhorsey@deltaztech.com')
+Post.objects.create(author=me, title='Sample title', text='Test')
+Post.objects.filter(author=me)
+Post.objects.filter(title__contains='title')
+
+from django.utils import timezone
+Post.objects.filter(published_date__lte=timezone.now())
+# not published yet.  publish:
+post = Post.objects.get(title="Sample title")
+post.publish()
+Post.objects.filter(published_date__lte=timezone.now())
+
+Post.objects.order_by('created_date')
+
+# Chaining QuerySets:
+Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
