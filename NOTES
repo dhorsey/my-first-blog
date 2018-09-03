@@ -20,3 +20,7 @@ Post.objects.order_by('created_date')
 
 # Chaining QuerySets:
 Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+
+--
+$ workon <your-pythonanywhere-username>.pythonanywhere.com
+(ola.pythonanywhere.com)$ python manage.py collectstatic
